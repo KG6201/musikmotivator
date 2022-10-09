@@ -18,6 +18,8 @@ use App\Http\Controllers\ScheduleController;
 */
 Route::resource('music', MusicController::class);
 
+Route::resource('action', ActionController::class);
+
 Route::resource('schedule', ScheduleController::class);
 
 Route::get('/', function () {
