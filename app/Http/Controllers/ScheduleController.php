@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Validator;
+use App\Models\Schedule;
+
 class ScheduleController extends Controller
 {
     /**
@@ -13,7 +16,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        return view('tweet.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        return view('tweet.create');
     }
 
     /**
