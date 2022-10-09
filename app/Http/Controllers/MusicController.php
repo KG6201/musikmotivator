@@ -15,7 +15,8 @@ class MusicController extends Controller
      */
     public function index()
     {
-        return view('music.index');
+        $musics = [];
+        return view('music.index',compact('musics'));
     }
 
     /**

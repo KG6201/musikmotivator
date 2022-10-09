@@ -14,7 +14,7 @@ use App\Http\Controllers\ActionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('tweet', MusicController::class);
+Route::resource('music', MusicController::class);
 
 Route::get('/', function () {
     return view('welcome');
