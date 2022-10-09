@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id('schedule_id');
-            $table->text('schedule_title');
+            $table->string('schedule_title');
             $table->timestamps();
             $table->datetime('start');
             $table->datetime('finish');

@@ -16,7 +16,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view('tweet.index');
+        return view('schedule.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        return view('tweet.create');
+        return view('schedule.create');
     }
 
     /**
@@ -37,7 +37,24 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'schedule_title' => 'required | max:191',
+            'start' => 'required',
+            'finish'=>'required'
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+            ->route('schedule.create')
+            ->withInput()
+            ->withErrors($validator);
+        }
+        // create()は最初から用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        $result = Schedule::create($request->all());
+        // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('schedule.index');
     }
 
     /**
