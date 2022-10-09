@@ -89,12 +89,17 @@ class MusicController extends Controller
     public function storeSpecifiedMusics()
     {
         $musics = Music::getSpecifiedMusics();
-        // $music = $musics->items;
-        ddd($musics);
+        $item = $musics["tracks"]["items"][0];
+        $name = $item["name"];
+        $url = "https://open.spotify.com/track/" . $item["id"];
+        // ddd($musics["tracks"]["items"][0]);
         // create()は最初から用意されている関数
         // 戻り値は挿入されたレコードの情報
-        // $result = Music::create($request->all());
-        // $result = Music::create($musics);
+        $result = Music::create([
+            "name" => $name,
+            "url" => $url
+        ]);
+            
         // ルーティング「music.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('music.index');
     }

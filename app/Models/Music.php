@@ -10,6 +10,10 @@ class Music extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'url',
+    ];
+
     public static function getSpecifiedMusics()
     {
         $musics = Spotify::searchTracks('Closed on Sunday')->get();
