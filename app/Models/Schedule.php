@@ -18,6 +18,6 @@ class Schedule extends Model
       // 🔽 追加
       public static function getAllOrderBystart()
       {
-        return self::orderBy('start', 'desc')->get();
+        return self::orderBy('start', 'asc')->get();
       }
 }
