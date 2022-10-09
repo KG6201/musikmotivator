@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Music;
+use Spotify;
 
 class MusicController extends Controller
 {
@@ -83,5 +84,18 @@ class MusicController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function storeSpecifiedMusics()
+    {
+        $musics = Music::getSpecifiedMusics();
+        // $music = $musics->items;
+        ddd($musics);
+        // create()は最初から用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        // $result = Music::create($request->all());
+        // $result = Music::create($musics);
+        // ルーティング「music.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('music.index');
     }
 }

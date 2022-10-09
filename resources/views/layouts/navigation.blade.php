@@ -45,6 +45,13 @@
             {{ __('Action') }}
           </x-nav-link>
         </div>
+
+        <!-- 🔽 音楽取得ページへのリンクを追加 -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+          <x-nav-link :href="route('music.storemusic')" :active="request()->routeIs('music.storemusic')">
+            {{ __('Store Music') }}
+          </x-nav-link>
+        </div>
       </div>
 
       <!-- Settings Dropdown -->
