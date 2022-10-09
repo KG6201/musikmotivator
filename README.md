@@ -37,9 +37,9 @@ Laravel Breezeのインストール
 ```
 
 ## マイグレーションによるテーブル作成
-Model ```Tweet```を作成。```-m``` をつけることでマイグレーションファイルも同時に作成できる。
+Model ```Music```を作成。```-m``` をつけることでマイグレーションファイルも同時に作成できる。
 ```
-./vendor/bin/sail php artisan make:model Tweet -m
+./vendor/bin/sail php artisan make:model Music -m
 ```
 database/migrations/ の下にあるマイグレーションファイルを編集。  
   
