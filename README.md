@@ -1,4 +1,4 @@
-# laratter
+# musikmotivator
 ## 開発環境
 - Laravel Sail（ララベル セイル）  
 
