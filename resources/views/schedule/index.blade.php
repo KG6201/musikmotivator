@@ -14,7 +14,7 @@
           <table class="text-center w-full border-collapse">
             <thead>
               <tr>
-                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">tweet</th>
+                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">Schedule</th>
               </tr>
             </thead>
             <tbody>
