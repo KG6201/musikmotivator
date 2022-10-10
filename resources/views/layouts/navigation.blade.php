@@ -115,6 +115,30 @@
       </x-responsive-nav-link>
     </div>
 
+    <div class="pt-2 pb-3 space-y-1">
+      <x-responsive-nav-link :href="route('schedule.index')" :active="request()->routeIs('schedule.index')">
+        {{ __('Schedule Index') }}
+      </x-responsive-nav-link>
+    </div>
+    <!-- 🔽 作成ページへのリンクを追加 -->
+    <div class="pt-2 pb-3 space-y-1">
+      <x-responsive-nav-link :href="route('schedule.create')" :active="request()->routeIs('schedule.create')">
+        {{ __('Schedule Create') }}
+      </x-responsive-nav-link>
+    </div>
+    <div class="pt-2 pb-3 space-y-1">
+      <x-responsive-nav-link :href="route('action.index')" :active="request()->routeIs('schedule.index')">
+        {{ __('Action') }}
+      </x-responsive-nav-link>
+    </div>
+
+    <!-- 🔽 音楽取得ページへのリンクを追加 -->
+    <div class="pt-2 pb-3 space-y-1">
+      <x-responsive-nav-link :href="route('music.storemusic')" :active="request()->routeIs('music.storemusic')">
+        {{ __('Store Music') }}
+      </x-responsive-nav-link>
+    </div>
+
     <!-- Responsive Settings Options -->
     <div class="pt-4 pb-1 border-t border-gray-200">
       <div class="flex items-center px-4">
