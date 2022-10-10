@@ -16,7 +16,7 @@ class MusicController extends Controller
      */
     public function index()
     {
-        $musics = [];
+        $musics = Music::getAllOrderByUpdated_at();
         return view('music.index',compact('musics'));
     }
 

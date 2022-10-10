@@ -19,4 +19,9 @@ class Music extends Model
         $musics = Spotify::searchTracks('Closed on Sunday')->get();
         return $musics;
     }
+    
+    public static function getAllOrderByUpdated_at()
+    {
+        return self::orderBy('updated_at', 'desc')->get();
+    }
 }
