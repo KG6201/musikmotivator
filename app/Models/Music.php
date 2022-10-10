@@ -14,7 +14,7 @@ class Music extends Model
         'name', 'url',
     ];
 
-    public static function getSpecifiedMusics()
+    public static function downloadMusicInformation()
     {
         $musics = Spotify::searchTracks('Closed on Sunday')->get();
         return $musics;

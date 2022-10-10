@@ -86,9 +86,9 @@ class MusicController extends Controller
         //
     }
 
-    public function storeSpecifiedMusics()
+    public function storeDownloadedMusicInformation()
     {
-        $musics = Music::getSpecifiedMusics();
+        $musics = Music::downloadMusicInformation();
         $items = $musics["tracks"]["items"];
         // ddd($musics["tracks"]["items"]);
         foreach ($items as $item) {
