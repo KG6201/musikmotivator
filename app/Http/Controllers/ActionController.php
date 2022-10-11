@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Schedule;
+use App\Models\Music;
 
 class ActionController extends Controller
 {
@@ -14,7 +15,12 @@ class ActionController extends Controller
      */
     public function index()
     {
-        //
+        //Schedule DB取得
+        $data = Schedule::orderBy('created_at', 'desc')->get();
+
+        echo $date;
+
+        return view('post')->with(['date' => $date]);
     }
 
     /**

@@ -40,6 +40,7 @@
             {{ __('Schedule Create') }}
           </x-nav-link>
         </div>
+        <!-- 🔽 actionページへのリンク追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('action.index')" :active="request()->routeIs('schedule.index')">
             {{ __('Action') }}
@@ -126,6 +127,8 @@
         {{ __('Schedule Create') }}
       </x-responsive-nav-link>
     </div>
+
+    <!-- 🔽 actionのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('action.index')" :active="request()->routeIs('schedule.index')">
         {{ __('Action') }}
