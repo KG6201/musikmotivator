@@ -16,8 +16,9 @@ class Music extends Model
 
     public static function downloadMusicInformation()
     {
-        $musics = Spotify::searchTracks('Closed on Sunday')->get();
-        return $musics;
+        $query = 'Let it be';
+        $tracks = Spotify::searchTracks($query)->get('tracks')['items'];
+        return $tracks;
     }
     
     public static function getAllOrderByUpdated_at()
