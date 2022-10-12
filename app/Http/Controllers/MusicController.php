@@ -89,10 +89,20 @@ class MusicController extends Controller
     public function storeDownloadedMusicInformation()
     {
         $tracks = Music::downloadMusicInformation();
-        // ddd($tracks);
+
         foreach ($tracks as $track) {
-            $name = $track["name"];
-            $url = "https://open.spotify.com/track/" . $track["id"];
+            $spotify_track_id = $track['id'];
+            $name = $track['name'];
+            $url = $track['external_urls']['spotify'];
+            $preview_url = 'https://open.spotify.com/track/' . $spotify_track_id;
+            $duration_ms = $track['duration_ms'];
+
+            $artist = $track['artists'][0];
+            $spotify_artist_id = $artist['id'];
+            $artist_name = $artist['name'];
+            $artist_url = $artist['external_urls']['spotify'];
+
+            $album_images = $track['album']['images'];
 
             // create()は最初から用意されている関数
             // 戻り値は挿入されたレコードの情報
