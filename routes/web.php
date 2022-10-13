@@ -16,7 +16,10 @@ use App\Http\Controllers\ScheduleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/music/storemusic', [MusicController::class, 'storeDownloadedMusicInformation'])->name('music.storemusic');
 Route::resource('music', MusicController::class);
+
+Route::resource('action', ActionController::class);
 
 Route::resource('schedule', ScheduleController::class);
 
