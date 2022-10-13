@@ -103,6 +103,11 @@ class MusicController extends Controller
             $artist_url = $artist['external_urls']['spotify'];
 
             $album_images = $track['album']['images'];
+            foreach ($album_images as $album_image) {
+                $height = $album_image['height'];
+                $album_image_url = $album_image['url'];
+                $album_image_urls[$height] = $album_image_url;
+            }
 
             // create()は最初から用意されている関数
             // 戻り値は挿入されたレコードの情報
