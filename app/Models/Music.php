@@ -11,7 +11,14 @@ class Music extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'url',
+        "spotify_track_id",
+        "name",
+        "url",
+        "preview_url",
+        "duration_ms",
+        "spotify_artist_id",
+        "artist_name",
+        "artist_url",
     ];
 
     public static function downloadMusicInformation()

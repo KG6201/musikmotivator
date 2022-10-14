@@ -111,10 +111,16 @@ class MusicController extends Controller
 
             // create()は最初から用意されている関数
             // 戻り値は挿入されたレコードの情報
-            $result = Music::create([
-                "name" => $name,
-                "url" => $url
-            ]);
+            $result = Music::create(compact(
+                'spotify_track_id',
+                'name',
+                'url',
+                'preview_url',
+                'duration_ms',
+                'spotify_artist_id',
+                'artist_name',
+                'artist_url',
+            ));
         }
             
         // ルーティング「music.index」にリクエスト送信（一覧ページに移動）
