@@ -89,7 +89,7 @@ class MusicController extends Controller
     public function storeDownloadedMusicInformation()
     {
         $query = 'Let it be';
-        $tracks = Music::downloadMusicInformationByQuery($query);
+        $tracks = Music::downloadTracksInformationByQuery($query);
 
         foreach ($tracks as $track) {
             $spotify_track_id = $track['id'];
