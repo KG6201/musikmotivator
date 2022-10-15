@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Schedule;
-use App\Models\Music;
 use App\Models\Action;
 use Validator;
 use Auth;
@@ -19,13 +17,12 @@ class ActionController extends Controller
     public function index()
     {
         //Schedule DB取得
-        $schedules = Schedule::getAllOrderBystart();
-        $musics    = Music::getLimitedOrderByUpdated_at();
-
+        $actions = Action::getAllOrderByFinish();
+       
 
         return view('action.index', [
-            'schedules'   => $schedules,
-            'musics'      => $musics,
+            'actions'   => $actions,
+           
         ]);
 
 
