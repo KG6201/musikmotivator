@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Music;
+use App\Models\Action;
+use Validator;
+use Auth;
 
 class ActionController extends Controller
 {
@@ -48,7 +51,24 @@ class ActionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'schedule_id' => 'required | exists:schedules,id',
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+        // create()は最初から用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        // 🔽 編集 フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
+        $data = $request->merge(['user_id' => Auth::user()->id, 'schedule_id' => $request->schedule_id])->all();
+        $result = Action::create($data);
+        
+        return redirect()->back();
     }
 
     /**
