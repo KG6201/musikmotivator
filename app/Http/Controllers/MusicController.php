@@ -109,9 +109,7 @@ class MusicController extends Controller
                 $album_image_urls[$height] = $album_image_url;
             }
 
-            // create()は最初から用意されている関数
-            // 戻り値は挿入されたレコードの情報
-            $result = Music::create(compact(
+            $request = compact(
                 'spotify_track_id',
                 'name',
                 'url',
@@ -120,7 +118,30 @@ class MusicController extends Controller
                 'spotify_artist_id',
                 'artist_name',
                 'artist_url',
-            ));
+            );
+
+            // バリデーション
+            $validator = Validator::make($request, [
+                'spotify_track_id' => 'required | max:191 | unique:music,spotify_track_id',
+                'name' => 'required | max:191',
+                'url' => 'required',
+                'preview_url' => 'required',
+                'duration_ms' => 'required',
+                'spotify_artist_id' => 'required | max:191',
+                'artist_name' => 'required | max:191',
+                'artist_url' => 'required',
+            ]);
+            // バリデーション:エラー
+            if ($validator->fails()) {
+                return redirect()
+                ->route('music.index')
+                ->withInput()
+                ->withErrors($validator);
+            }
+
+            // create()は最初から用意されている関数
+            // 戻り値は挿入されたレコードの情報
+            $result = Music::create($request);
         }
             
         // ルーティング「music.index」にリクエスト送信（一覧ページに移動）

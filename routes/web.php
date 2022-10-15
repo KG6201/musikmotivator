@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
-    Route::resource('action', ActionController::class);
+    
 });
 
 require __DIR__.'/auth.php';
