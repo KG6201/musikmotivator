@@ -25,9 +25,15 @@
                   <div class="flex">
                     <form action="{{ route('schedule.edit',$schedule->id) }}" method="GET" class="text-left">
                       @csrf
-                      <button type= "submit" class="bg-gray-400 hover:bg-gray-500 text-white rounded-full px-4 py-2" >編集・更新</button>
+                      <button type= "submit" class="bg-gray-400 hover:bg-gray-500 text-white rounded-full px-4 py-2 mx-1" >編集・更新</button>
+                    </form>
+
+                    <form action="{{ route('schedule.destroy',$schedule->id) }}" method="POST" class="text-left">
+                      @method('delete')
+                      @csrf
                       <button type= "submit" class="bg-gray-400 hover:bg-gray-500 text-white rounded-full px-4 py-2" >削除</button>
                     </form>
+                    
                   </div>
                 </td>
               </tr>

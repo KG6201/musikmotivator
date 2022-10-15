@@ -77,8 +77,8 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        $schedule = Schedule::find($id);
-        return view('schedule.edit', compact('schedule'));
+        $schedules = Schedule::find($id);
+        return view('schedule.edit', compact('schedules'));
     }
 
     /**
@@ -99,7 +99,7 @@ class ScheduleController extends Controller
         // バリデーション:エラー
         if ($validator->fails()) {
             return redirect()
-            ->route('schedule.create')
+            ->route('schedule.edit')
             ->withInput()
             ->withErrors($validator);
         }
@@ -118,6 +118,7 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = Schedule::find($id)->delete();
+        return redirect()->route('schedule.index');
     }
 }
