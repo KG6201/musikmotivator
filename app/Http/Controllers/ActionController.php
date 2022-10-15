@@ -53,7 +53,6 @@ class ActionController extends Controller
     {
         // バリデーション
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required | exists:users,id',
             'schedule_id' => 'required | exists:schedules,id',
             'start' => 'required',
             'finish' => 'required',

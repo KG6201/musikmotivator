@@ -15,14 +15,26 @@
               <p class="py-2 px-3 text-grey-darkest" id="schedule">
                 {{$schedule->schedule_title}}
               </p>
+              <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">start</p>
+              <p class="py-2 px-3 text-grey-darkest" id="start">
+                {{$schedule->start}}
+              </p>
+              <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">finish</p>
+              <p class="py-2 px-3 text-grey-darkest" id="finish">
+                {{$schedule->finish}}
+              </p>
             </div>
             @include('common.errors')
             <form class="mb-6" action="{{ route('action.store') }}" method="POST">
               @csrf
               <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
               <div class="flex flex-col mb-4">
-                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="action">New Action</label>
-                <input class="border py-2 px-3 text-grey-darkest" type="text" name="action" id="action">
+                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="actualstart">actual start</label>
+                <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="actualstart" id="actualstart">
+              </div>
+              <div class="flex flex-col mb-4">
+                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="actualfinish">actual finish</label>
+                <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="actualfinish" id="actualfinish">
               </div>
               <div class="flex justify-evenly">
                 <a href="{{ url()->previous() }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">
