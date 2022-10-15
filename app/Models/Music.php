@@ -21,7 +21,7 @@ class Music extends Model
         "artist_url",
     ];
 
-    public static function downloadMusicInformation()
+    public static function downloadMusicInformationByQuery($query)
     {
         $query = 'Let it be';
         $tracks = Spotify::searchTracks($query)->get('tracks')['items'];
