@@ -21,10 +21,12 @@
               @foreach ($schedules as $schedule)
               <tr class="hover:bg-grey-lighter">
                 <td class="py-4 px-6 border-b border-grey-light">
-                            <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$schedule->schedule_title}}</h3>          
+                            <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$schedule->schedule_title}}</h3>
                   <div class="flex">
-                    <!-- 更新ボタン -->
-                    <!-- 削除ボタン -->
+                    <form method="post">
+                      @csrf
+                      <input type="submit" name="button1" value="ボタン1">
+                    </form>
                   </div>
                 </td>
               </tr>
