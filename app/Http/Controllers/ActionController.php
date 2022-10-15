@@ -16,7 +16,7 @@ class ActionController extends Controller
      */
     public function index()
     {
-        //Schedule DB取得
+        //Action DB取得
         $actions = Action::getAllOrderByFinish();
        
 

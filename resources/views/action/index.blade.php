@@ -19,13 +19,7 @@
               @foreach ($actions as $action)
               <tr class="hover:bg-grey-lighter">
                 <td class="py-4 px-6 border-b border-grey-light">
-                            <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$action->action_title}}</h3>
-                  <div class="flex">
-                    <form method="post">
-                      @csrf
-                      <input type="submit" name="button1" value="ボタン1">
-                    </form>
-                  </div>
+                    <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$action->id}}</h3>
                 </td>
               </tr>
               @endforeach
