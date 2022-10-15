@@ -16,11 +16,18 @@ class ActionController extends Controller
     public function index()
     {
         //Schedule DB取得
-        $schedule = Schedule::orderBy('created_at', 'desc')->get();
+        $schedules = Schedule::getAllOrderBystart();
+        $musics    = Music::getLimitedOrderByUpdated_at();
 
-        echo $schedule;
 
-        return view('action.index')->with(['action.index' => $schedule]);
+        return view('action.index', [
+            'schedules'   => $schedules,
+            'musics'      => $musics,
+        ]);
+
+
+       
+
     }
 
     /**
