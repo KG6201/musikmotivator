@@ -32,4 +32,9 @@ class Music extends Model
     {
         return self::orderBy('updated_at', 'desc')->get();
     }
+    
+    public static function getLimitedOrderByUpdated_at()
+    {
+        return self::orderBy('updated_at', 'desc')->limit(20)->get();
+    }
 }
