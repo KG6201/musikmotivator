@@ -29,12 +29,12 @@
               @csrf
               <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
               <div class="flex flex-col mb-4">
-                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="actualstart">actual start</label>
-                <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="actualstart" id="actualstart">
+                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="start">actual start</label>
+                <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="start" id="start">
               </div>
               <div class="flex flex-col mb-4">
-                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="actualfinish">actual finish</label>
-                <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="actualfinish" id="actualfinish">
+                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="finish">actual finish</label>
+                <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="finish" id="finish">
               </div>
               <div class="flex justify-evenly">
                 <a href="{{ url()->previous() }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">
