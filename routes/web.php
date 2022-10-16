@@ -18,7 +18,7 @@ use App\Http\Controllers\ScheduleController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('schedule', ScheduleController::class);
+    Route::get('/action/{id}/act', [ActionController::class, 'act'])->name('action.act');
     Route::get('/music/storemusic', [MusicController::class, 'storeDownloadedMusicInformation'])->name('music.storemusic');
     Route::resource('music', MusicController::class);
     Route::resource('action', ActionController::class);

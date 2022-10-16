@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Action;
+use App\Models\Schedule;
 use Validator;
 use Auth;
 
@@ -67,7 +68,8 @@ class ActionController extends Controller
         $data = $request->merge(['user_id' => Auth::user()->id, 'schedule_id' => $request->schedule_id])->all();
         $result = Action::create($data);
         
-        return redirect()->back();
+        // ルーティング「action.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('action.index');
     }
 
     /**
@@ -115,5 +117,24 @@ class ActionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function act(Request $request)
+    {
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'schedule_id' => 'required',
+            'start' => 'required',
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+            ->route('schedule.index')
+            ->withInput()
+            ->withErrors($validator);
+        }
+
+        $schedule = Schedule::find($request->id);
+        return view('action.act', compact('request', 'schedule'));
     }
 }
