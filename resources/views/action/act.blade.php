@@ -43,6 +43,31 @@
               </div>
             </form>
           </div>
+          <table class="text-center w-full border-collapse">
+            <thead>
+              <tr>
+                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">music</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($musics as $music)
+              <tr class="hover:bg-grey-lighter">
+                <td class="py-4 px-6 border-b border-grey-light">
+                  <div class="flex">
+                    <a href="{{$music->url}}">
+                      <h3 class="text-left font-bold text-lg text-grey-dark">{{$music->name}}</h3>
+                    </a>
+                    <a href="{{$music->artist_url}}">
+                      <h3 class="px-4 pt-0.5 text-left text-grey-dark">- {{$music->artist_name}} -</h3>
+                    </a>
+                  </div>
+                  <div class="flex">
+                  </div>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

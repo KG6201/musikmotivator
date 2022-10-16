@@ -20,8 +20,10 @@
               <tr class="hover:bg-grey-lighter">
                 <td class="py-4 px-6 border-b border-grey-light">
                   <a href="{{ route('action.show',$action->id) }}">
-                    <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$action->id}}</h3>
+                    <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$action->schedule->schedule_title}}</h3>
                   </a> 
+                  <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$action->start}}</h3>
+                  <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$action->finish}}</h3>
                 </td>
               </tr>
               @endforeach
