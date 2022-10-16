@@ -42,6 +42,34 @@
               </div>
             </form>
           </div>
+
+          <table class="text-center w-full border-collapse">
+            <thead>
+              <tr>
+                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($actions as $action)
+              <tr class="hover:bg-grey-lighter">
+                <td class="text-left py-4 px-6 border-b border-grey-light">
+                  <div class="flex flex-col mb-4">
+                    <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">Started At</p>
+                    <p class="py-2 px-3 text-grey-darkest" id="action_start">
+                        {{$action->start}}
+                    </p>
+                  </div>
+                  <div class="flex flex-col mb-4">
+                    <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">Finished At</p>
+                    <p class="py-2 px-3 text-grey-darkest" id="action_finish">
+                        {{$action->finish}}
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

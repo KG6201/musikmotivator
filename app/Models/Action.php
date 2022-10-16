@@ -20,4 +20,9 @@ class Action extends Model
     {
         return self::orderBy('finish', 'desc')->get();
     }
+
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 }

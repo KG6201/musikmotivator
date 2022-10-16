@@ -69,7 +69,11 @@ class ScheduleController extends Controller
     public function show($id)
     {
         $schedule = Schedule::find($id);
-        return view('schedule.show', compact('schedule'));
+        $actions = $schedule
+            ->scheduleActions()
+            ->orderBy('created_at','desc')
+            ->get();
+        return view('schedule.show', compact('schedule', 'actions'));
     }
 
     /**
