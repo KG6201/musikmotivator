@@ -79,6 +79,8 @@ class ActionController extends Controller
     public function show($id)
     {
         //
+        $action = Action::find($id);
+        return view('action.show', compact('action'));
     }
 
     /**
