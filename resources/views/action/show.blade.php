@@ -13,27 +13,27 @@
             <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">Schedule</p>
               <p class="py-2 px-3 text-grey-darkest" id="schedule">
-                {{$schedules->schedule_title}}
+                {{$schedule->schedule_title}}
               </p>
               <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">start</p>
               <p class="py-2 px-3 text-grey-darkest" id="start">
-                {{$schedules->start}}
+                {{$schedule->start}}
               </p>
               <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">finish</p>
               <p class="py-2 px-3 text-grey-darkest" id="finish">
-                {{$schedules->finish}}
+                {{$schedule->finish}}
               </p>
               <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">Action</p>
               <p class="py-2 px-3 text-grey-darkest" id="schedule">
-                {{$actions->action_title}}
+                {{$action->action_title}}
               </p>
               <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">start</p>
               <p class="py-2 px-3 text-grey-darkest" id="start">
-                {{$actions->start}}
+                {{$action->start}}
               </p>
               <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">finish</p>
               <p class="py-2 px-3 text-grey-darkest" id="finish">
-                {{$actions->finish}}
+                {{$action->finish}}
               </p>
             </div>
           </div>
