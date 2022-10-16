@@ -81,9 +81,9 @@ class ScheduleController extends Controller
     public function edit($id)
     {
         
-        $schedules = Schedule::find($id);
+        $schedule = Schedule::find($id);
 
-        return view('schedule.edit', compact('schedules'));
+        return view('schedule.edit', compact('schedule'));
     }
 
     /**
