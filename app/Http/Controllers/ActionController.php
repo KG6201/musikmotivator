@@ -20,16 +20,8 @@ class ActionController extends Controller
     {
         //Action DB取得
         $actions = Action::getAllOrderByFinish();
-       
 
-        return view('action.index', [
-            'actions'   => $actions,
-           
-        ]);
-
-
-       
-
+        return view('action.index', compact('actions'));
     }
 
     /**
