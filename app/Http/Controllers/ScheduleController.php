@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Models\Schedule;
+use Auth;
 
 class ScheduleController extends Controller
 {
@@ -53,7 +54,8 @@ class ScheduleController extends Controller
         }
         // create()は最初からmodelに用意されている関数
         // 戻り値は挿入されたレコードの情報
-        $result = Schedule::create($request->all());
+        $data = $request->merge(['user_id' => Auth::user()->id, 'schedule_id' => $request->schedule_id])->all();
+        $result = Schedule::create($data);
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('schedule.index');
     }
