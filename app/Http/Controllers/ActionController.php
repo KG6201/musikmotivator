@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Action;
 use App\Models\Schedule;
+use App\Models\Music;
 use Validator;
 use Auth;
 
@@ -135,6 +136,7 @@ class ActionController extends Controller
         }
 
         $schedule = Schedule::find($request->id);
-        return view('action.act', compact('request', 'schedule'));
+        $musics = Music::getLimitedOrderByUpdated_at();
+        return view('action.act', compact('request', 'schedule', 'musics'));
     }
 }
