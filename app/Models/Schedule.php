@@ -15,9 +15,13 @@ class Schedule extends Model
         'updated_at',
       ];
     
-      // 🔽 追加
-      public static function getAllOrderBystart()
-      {
+    public static function getAllOrderBystart()
+    {
         return self::orderBy('start', 'asc')->get();
-      }
+    }
+
+    public function scheduleActions()
+    {
+        return $this->hasMany(Action::class);
+    }
 }

@@ -21,10 +21,21 @@
               @foreach ($schedules as $schedule)
               <tr class="hover:bg-grey-lighter">
                 <td class="py-4 px-6 border-b border-grey-light">
-                            <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$schedule->schedule_title}}</h3>          
+                  <!-- 🔽 詳細画面へのリンク -->
+                  <a href="{{ route('schedule.show',$schedule->id) }}">
+                    <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$schedule->schedule_title}}</h3>
+                  </a>
                   <div class="flex">
-                    <!-- 更新ボタン -->
-                    <!-- 削除ボタン -->
+                    <form action="{{ route('schedule.edit',$schedule->id) }}" method="GET" class="text-left">
+                      @csrf
+                      <button type= "submit" class="bg-gray-400 hover:bg-gray-500 text-white rounded-full px-4 py-2 mx-1" >編集・更新</button>
+                    </form>
+
+                    <form action="{{ route('schedule.destroy',$schedule->id) }}" method="POST" class="text-left">
+                      @method('delete')
+                      @csrf
+                      <button type= "submit" class="bg-gray-400 hover:bg-gray-500 text-white rounded-full px-4 py-2" >削除</button>
+                    </form>
                   </div>
                 </td>
               </tr>

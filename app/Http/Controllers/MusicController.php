@@ -88,18 +88,61 @@ class MusicController extends Controller
 
     public function storeDownloadedMusicInformation()
     {
-        $musics = Music::downloadMusicInformation();
-        $items = $musics["tracks"]["items"];
-        // ddd($musics["tracks"]["items"]);
-        foreach ($items as $item) {
-            $name = $item["name"];
-            $url = "https://open.spotify.com/track/" . $item["id"];
+        $query = 'Let it be';
+        $tracks = Music::downloadTracksInformationByQuery($query);
+
+        foreach ($tracks as $track) {
+            $spotify_track_id = $track['id'];
+            $name = $track['name'];
+            $url = $track['external_urls']['spotify'];
+            $preview_url = 'https://open.spotify.com/track/' . $spotify_track_id;
+            $duration_ms = $track['duration_ms'];
+
+            $artist = $track['artists'][0];
+            $spotify_artist_id = $artist['id'];
+            $artist_name = $artist['name'];
+            $artist_url = $artist['external_urls']['spotify'];
+
+            $album_images = $track['album']['images'];
+            foreach ($album_images as $album_image) {
+                $height = $album_image['height'];
+                $album_image_url = $album_image['url'];
+                $album_image_urls[$height] = $album_image_url;
+            }
+
+            $request = compact(
+                'spotify_track_id',
+                'name',
+                'url',
+                'preview_url',
+                'duration_ms',
+                'spotify_artist_id',
+                'artist_name',
+                'artist_url',
+            );
+
+            // バリデーション
+            $validator = Validator::make($request, [
+                'spotify_track_id' => 'required | max:191 | unique:music,spotify_track_id',
+                'name' => 'required | max:191',
+                'url' => 'required',
+                'preview_url' => 'required',
+                'duration_ms' => 'required',
+                'spotify_artist_id' => 'required | max:191',
+                'artist_name' => 'required | max:191',
+                'artist_url' => 'required',
+            ]);
+            // バリデーション:エラー
+            if ($validator->fails()) {
+                return redirect()
+                ->route('music.index')
+                ->withInput()
+                ->withErrors($validator);
+            }
+
             // create()は最初から用意されている関数
             // 戻り値は挿入されたレコードの情報
-            $result = Music::create([
-                "name" => $name,
-                "url" => $url
-            ]);
+            $result = Music::create($request);
         }
             
         // ルーティング「music.index」にリクエスト送信（一覧ページに移動）

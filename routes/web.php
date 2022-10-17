@@ -16,24 +16,24 @@ use App\Http\Controllers\ScheduleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/music/storemusic', [MusicController::class, 'storeDownloadedMusicInformation'])->name('music.storemusic');
-Route::resource('music', MusicController::class);
 
-Route::resource('action', ActionController::class);
-
-Route::resource('schedule', ScheduleController::class);
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/action/{id}/act', [ActionController::class, 'act'])->name('action.act');
+    Route::get('/music/storemusic', [MusicController::class, 'storeDownloadedMusicInformation'])->name('music.storemusic');
+    Route::resource('music', MusicController::class);
+    Route::resource('action', ActionController::class);
+    Route::resource('schedule', ScheduleController::class);
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
+    
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
-Route::resource('action', ActionController::class);
 
 Route::get('/', function () {
     return view('welcome');

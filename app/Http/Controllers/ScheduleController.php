@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Models\Schedule;
+use Auth;
 
 class ScheduleController extends Controller
 {
@@ -53,7 +54,8 @@ class ScheduleController extends Controller
         }
         // create()は最初からmodelに用意されている関数
         // 戻り値は挿入されたレコードの情報
-        $result = Schedule::create($request->all());
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        $result = Schedule::create($data);
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('schedule.index');
     }
@@ -66,7 +68,12 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        $actions = $schedule
+            ->scheduleActions()
+            ->orderBy('created_at','desc')
+            ->get();
+        return view('schedule.show', compact('schedule', 'actions'));
     }
 
     /**
@@ -77,7 +84,10 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $schedule = Schedule::find($id);
+
+        return view('schedule.edit', compact('schedule'));
     }
 
     /**
@@ -89,7 +99,24 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'schedule_title' => 'required | max:191',
+            'start' => 'required',
+            'finish'=>'required | after:start'
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+            ->route('schedule.edit')
+            ->withInput()
+            ->withErrors($validator);
+        }
+        // create()は最初からmodelに用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        $result = Schedule::find($id)->update($request->all());
+        // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('schedule.index');
     }
 
     /**
@@ -100,6 +127,7 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = Schedule::find($id)->delete();
+        return redirect()->route('schedule.index');
     }
 }
