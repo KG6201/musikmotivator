@@ -54,7 +54,7 @@ class ScheduleController extends Controller
         }
         // create()は最初からmodelに用意されている関数
         // 戻り値は挿入されたレコードの情報
-        $data = $request->merge(['user_id' => Auth::user()->id, 'schedule_id' => $request->schedule_id])->all();
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
         $result = Schedule::create($data);
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('schedule.index');
@@ -114,7 +114,7 @@ class ScheduleController extends Controller
         }
         // create()は最初からmodelに用意されている関数
         // 戻り値は挿入されたレコードの情報
-        $result = Schedule::update($request->all());
+        $result = Schedule::find($id)->update($request->all());
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('schedule.index');
     }
