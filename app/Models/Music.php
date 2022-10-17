@@ -55,7 +55,13 @@ class Music extends Model
         $playlists = Spotify::categoryPlaylists($category_id)->get('playlists')['items'];
         return $playlists;
     }
-    
+
+    public static function downloadfeaturedPlaylists()
+    {
+        $playlists = Spotify::featuredPlaylists()->get('playlists')['items'];
+        return $playlists;
+    }
+
     public static function downloadRecommendedTracksInformationByGenres($genres)
     {
         $genres = Spotify::availableGenreSeeds()->get('genres');
