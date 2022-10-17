@@ -15,9 +15,18 @@
           <form class="mb-6" action="{{ route('schedule.store') }}" method="POST">
             @csrf
             <div class="flex flex-col mb-4">
-              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="schedule_title">Title</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="text" name="schedule_title" id="schedule_title">
-            </div>
+                 <div class="mb-2 uppercase font-bold text-lg text-grey-darkest"><label for="category">category</label></div>
+                    <div class="mb-2 uppercase font-bold text-lg text-grey-darkest ">
+                      <select name="task">
+                      <option value="study">study</option>
+                      <option value="work" selected>work</option>
+                      <option value="go home">go home</option>
+                      </select>
+                    </div>    
+                <div class="flex flex-col mb-4">    
+                  <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="schedule_title">description or title</label>
+                  <input class="border py-2 px-3 text-grey-darkest" type="text" name="schedule_title" id="schedule_title">
+                </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="start">start</label>
               <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="start" id="start">
