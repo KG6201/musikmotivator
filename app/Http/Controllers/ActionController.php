@@ -75,7 +75,8 @@ class ActionController extends Controller
     {
         //
         $action = Action::find($id);
-        return view('action.show', compact('action'));
+        $schedule = Schedule::find($action->schedule_id);
+        return view('action.show', compact('action', 'schedule'));
     }
 
     /**
