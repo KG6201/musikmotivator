@@ -109,6 +109,7 @@ class MusicController extends Controller
                 $album_image_url = $album_image['url'];
                 $album_image_urls[$height] = $album_image_url;
             }
+            $image_url = $album_image_urls[64];
 
             $request = compact(
                 'spotify_track_id',
@@ -119,6 +120,7 @@ class MusicController extends Controller
                 'spotify_artist_id',
                 'artist_name',
                 'artist_url',
+                'image_url',
             );
 
             // バリデーション
@@ -131,6 +133,7 @@ class MusicController extends Controller
                 'spotify_artist_id' => 'required | max:191',
                 'artist_name' => 'required | max:191',
                 'artist_url' => 'required',
+                'image_url' => 'required',
             ]);
             // バリデーション:エラー
             if ($validator->fails()) {

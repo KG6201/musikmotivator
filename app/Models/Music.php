@@ -11,15 +11,10 @@ class Music extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        "spotify_track_id",
-        "name",
-        "url",
-        "preview_url",
-        "duration_ms",
-        "spotify_artist_id",
-        "artist_name",
-        "artist_url",
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
     ];
 
     public static function downloadTracksInformationByQuery($query)
