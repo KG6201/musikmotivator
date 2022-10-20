@@ -86,10 +86,11 @@ class MusicController extends Controller
         //
     }
 
-    public function storeDownloadedMusicInformation()
+    public function storeDownloadedMusicInformation($query = 'Let it be', $type = 'track')
     {
-        $query = 'Let it be';
-        $tracks = Music::downloadTracksInformationByQuery($query);
+        if ($type === 'track') {
+            $tracks = Music::downloadTracksInformationByQuery($query);
+        }
 
         foreach ($tracks as $track) {
             $spotify_track_id = $track['id'];
