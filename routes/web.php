@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -23,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('music', MusicController::class);
     Route::resource('action', ActionController::class);
     Route::resource('schedule', ScheduleController::class);
+    Route::resource('category', CategoryController::class);
     Route::get('/', function () {
         return view('welcome');
     });
