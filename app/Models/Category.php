@@ -10,15 +10,14 @@ class Category extends Model
     use HasFactory;
 
     protected $guarded = [
-        'category_id',
+        'id',
         'created_at',
         'updated_at',
     ];
 
-    public static function getAllOrderByUpdated_at()
+    public static function getAll()
     {
         return self::orderBy('category_id', 'asc')->get();
     }
-
 
 }

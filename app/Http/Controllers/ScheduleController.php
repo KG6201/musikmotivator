@@ -29,6 +29,8 @@ class ScheduleController extends Controller
      */
     public function create()
     {
+        $categories =  Category::getAll();
+        $schedules = Schedule::getAllOrderBystart();
         return view('schedule.create',compact('categories','schedules'));
     }
 
@@ -74,7 +76,8 @@ class ScheduleController extends Controller
             ->scheduleActions()
             ->orderBy('created_at','desc')
             ->get();
-        return view('schedule.show', compact('schedule', 'actions'));
+        $categories =  Category::getAll();    
+        return view('schedule.show', compact('schedule', 'actions','categories'));
     }
 
     /**
@@ -87,8 +90,8 @@ class ScheduleController extends Controller
     {
         
         $schedule = Schedule::find($id);
-
-        return view('schedule.edit', compact('schedule'));
+        $categories =  Category::getAll();   
+        return view('schedule.edit', compact('schedule','categories'));
     }
 
     /**

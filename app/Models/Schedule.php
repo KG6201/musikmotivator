@@ -24,4 +24,10 @@ class Schedule extends Model
     {
         return $this->hasMany(Action::class);
     }
+
+    public static function getAll()
+    {
+        return self::orderBy('category_id', 'asc')->get();
+    }
+
 }

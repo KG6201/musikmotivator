@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::getAllOrderByUpdated_at();
+        $categories = Category::getAll();
         return view('category.create', compact('categories'));
     }
 
@@ -55,7 +55,7 @@ class CategoryController extends Controller
         // 戻り値は挿入されたレコードの情報
         $result = Category::create($request->all());
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
-        return redirect()->route('schedule.index');
+        return redirect()->route('schedule.create');
     }
 
     /**
