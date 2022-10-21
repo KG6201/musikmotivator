@@ -23,9 +23,8 @@ class Music extends Model
         return $tracks;
     }
     
-    public static function searchPlaylistsByQuery($query)
+    public static function searchPlaylistsByQuery($query = 'study')
     {
-        $query = 'study';
         // $type = 'album';
         // $items = Spotify::searchItems($query, $type)->get('albums')['items'];
         // $albums = Spotify::searchAlbums($query)->get('albums')['items'];
@@ -36,9 +35,8 @@ class Music extends Model
         return $playlists;
     }
     
-    public static function downloadTracksInformationByPlaylist($playlist_id)
+    public static function downloadTracksInformationByPlaylist($playlist_id = '37i9dQZF1DX9c7yCloFHHL')
     {
-        $playlist_id = '37i9dQZF1DX9c7yCloFHHL';
         $tracks = Spotify::playlistTracks($playlist_id)->get('items');
         return $tracks;
     }

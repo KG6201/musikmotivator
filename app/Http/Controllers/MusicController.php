@@ -88,8 +88,19 @@ class MusicController extends Controller
 
     public function storeDownloadedMusicInformation($query = 'Let it be', $type = 'track')
     {
-        if ($type === 'track') {
-            $tracks = Music::downloadTracksInformationByQuery($query);
+        switch ($type) {
+            case 'track':
+                $tracks = Music::downloadTracksInformationByQuery($query);
+                break;
+            case 'playlist':
+                $playlists = Music::searchPlaylistsByQuery($query);
+                $tracks_in_playlist = Music::downloadTracksInformationByPlaylist($playlists[0]['id']);
+                foreach ($tracks_in_playlist as $track_in_playlist) {
+                    $tracks[] = $track_in_playlist['track'];
+                }
+                break;
+            default:
+                $tracks = Music::downloadTracksInformationByQuery($query);
         }
 
         foreach ($tracks as $track) {
