@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Category; //  追加
-use Illuminate\Support\Facades\Schema; //  追加
 
 class AppServiceProvider extends ServiceProvider
 {

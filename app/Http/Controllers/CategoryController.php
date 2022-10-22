@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Models\Category;
-use App\Models\Schedule;
 
 
 class CategoryController extends Controller
@@ -28,8 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::getAll();
-        return view('category.create', compact('categories'));
+        return view('category.create');
     }
 
     /**categories

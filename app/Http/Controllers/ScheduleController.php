@@ -30,8 +30,7 @@ class ScheduleController extends Controller
     public function create()
     {
         $categories =  Category::getAll();
-        $schedules = Schedule::getAllOrderBystart();
-        return view('schedule.create',compact('categories','schedules'));
+        return view('schedule.create',compact('categories'));
     }
 
     /**
