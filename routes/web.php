@@ -19,8 +19,8 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/action/{id}/act', [ActionController::class, 'act'])->name('action.act');
-    Route::get('/music/storemusic', [MusicController::class, 'storeDownloadedMusicInformation'])->name('music.storemusic');
+    Route::get('/schedule/{id}/act', [ActionController::class, 'act'])->name('action.act');
+    Route::get('/music/storemusic/{query?}/{type?}', [MusicController::class, 'storeDownloadedMusicInformation'])->name('music.storemusic');
     Route::resource('music', MusicController::class);
     Route::resource('action', ActionController::class);
     Route::resource('schedule', ScheduleController::class);
