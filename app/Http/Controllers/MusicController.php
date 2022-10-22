@@ -104,6 +104,8 @@ class MusicController extends Controller
         }
 
         foreach ($tracks as $track) {
+            if (is_null($track)) continue;
+
             $spotify_track_id = $track['id'];
             $name = $track['name'];
             $url = $track['external_urls']['spotify'];
