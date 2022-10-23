@@ -16,6 +16,16 @@
             @method('put')
             @csrf
             <div class="flex flex-col mb-4">
+
+
+              <div class="form-group">
+                        <label for="category_id">{{ __('カテゴリー') }}</label>
+                        <select class="form-control" id="category-id" name="category_id">
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                            @endforeach
+                        </select>
+              </div>
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="schedule_title">Title</label>
               <input class="border py-2 px-3 text-grey-darkest" type="text" name="schedule_title" id="schedule_title" value="{{$schedule->schedule_title}}">
             </div>

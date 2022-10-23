@@ -13,9 +13,17 @@
         <div class="p-6 bg-white border-b border-gray-200">
           @include('common.errors')
           <form class="mb-6" action="{{ route('schedule.store') }}" method="POST">
-            @csrf
-            <div class="flex flex-col mb-4">
-              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="schedule_title">Title</label>
+            @csrf                 
+            <div class="form-group">
+                <label for="category_id">{{ __('カテゴリー') }}</label>
+                <select class="form-control" id="category-id" name="category_id">
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="flex flex-col mb-4">    
+              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="schedule_title">description or title</label>
               <input class="border py-2 px-3 text-grey-darkest" type="text" name="schedule_title" id="schedule_title">
             </div>
             <div class="flex flex-col mb-4">

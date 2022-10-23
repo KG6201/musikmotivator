@@ -21,11 +21,18 @@
                 <td class="py-4 px-6 border-b border-grey-light">
                   <div class="flex">
                     <a href="{{$music->url}}">
-                        <h3 class="text-left font-bold text-lg text-grey-dark">{{$music->name}}</h3>
+                      <img class="object-fit"
+                        src="{{$music->image_url}}"
+                        alt="album cover">
                     </a>
-                    <a href="{{$music->artist_url}}">
-                        <h3 class="px-4 pt-0.5 text-left text-grey-dark">- {{$music->artist_name}} -</h3>
-                    </a>
+                    <div class="px-4">
+                      <a href="{{$music->url}}">
+                          <h3 class="text-left font-bold text-lg text-grey-dark">{{$music->name}}</h3>
+                      </a>
+                      <a href="{{$music->artist_url}}">
+                          <h3 class="pt-0.5 text-left text-grey-dark">- {{$music->artist_name}} -</h3>
+                      </a>
+                    </div>
                   </div>
                   <div class="flex">
                     <!-- 更新ボタン -->

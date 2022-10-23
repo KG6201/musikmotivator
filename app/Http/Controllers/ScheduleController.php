@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Models\Schedule;
+use App\Models\Category;
 use Auth;
 
 class ScheduleController extends Controller
@@ -28,7 +29,8 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        return view('schedule.create');
+        $categories =  Category::getAll();
+        return view('schedule.create',compact('categories'));
     }
 
     /**
@@ -41,6 +43,7 @@ class ScheduleController extends Controller
     {
         // バリデーション
         $validator = Validator::make($request->all(), [
+            'category_id' => 'required',
             'schedule_title' => 'required | max:191',
             'start' => 'required',
             'finish'=>'required | after:start'
@@ -73,7 +76,8 @@ class ScheduleController extends Controller
             ->scheduleActions()
             ->orderBy('created_at','desc')
             ->get();
-        return view('schedule.show', compact('schedule', 'actions'));
+        $categories =  Category::getAll();    
+        return view('schedule.show', compact('schedule', 'actions','categories'));
     }
 
     /**
@@ -86,8 +90,8 @@ class ScheduleController extends Controller
     {
         
         $schedule = Schedule::find($id);
-
-        return view('schedule.edit', compact('schedule'));
+        $categories =  Category::getAll();   
+        return view('schedule.edit', compact('schedule','categories'));
     }
 
     /**

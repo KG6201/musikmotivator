@@ -11,6 +11,15 @@
         <div class="p-6 bg-white border-b border-gray-200">
           <div class="mb-6">
             <div class="flex flex-col mb-4">
+
+              <div class="form-group">
+                      <label for="category_id">{{ __('カテゴリー') }}</label>
+                      <select class="form-control" id="category-id" name="category_id">
+                          @foreach ($categories as $category)
+                          <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                          @endforeach
+                      </select>
+              </div>
               <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">Schedule</p>
               <p class="py-2 px-3 text-grey-darkest" id="schedule">
                 {{$schedule->schedule_title}}
@@ -27,11 +36,6 @@
             @include('common.errors')
             <form class="mb-6" action="{{ route('action.act', $schedule->id) }}" method="GET">
               @csrf
-              <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
-              <div class="flex flex-col mb-4">
-                <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="start">actual start</label>
-                <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="start" id="start">
-              </div>
               <div class="flex justify-evenly">
                 <a href="{{ url()->previous() }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">
                   Back

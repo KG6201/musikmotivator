@@ -86,12 +86,26 @@ class MusicController extends Controller
         //
     }
 
-    public function storeDownloadedMusicInformation()
+    public function storeDownloadedMusicInformation($query = 'Let it be', $type = 'track')
     {
-        $query = 'Let it be';
-        $tracks = Music::downloadTracksInformationByQuery($query);
+        switch ($type) {
+            case 'track':
+                $tracks = Music::downloadTracksInformationByQuery($query);
+                break;
+            case 'playlist':
+                $playlists = Music::searchPlaylistsByQuery($query);
+                $tracks_in_playlist = Music::downloadTracksInformationByPlaylist($playlists[0]['id']);
+                foreach ($tracks_in_playlist as $track_in_playlist) {
+                    $tracks[] = $track_in_playlist['track'];
+                }
+                break;
+            default:
+                $tracks = Music::downloadTracksInformationByQuery($query);
+        }
 
         foreach ($tracks as $track) {
+            if (is_null($track)) continue;
+
             $spotify_track_id = $track['id'];
             $name = $track['name'];
             $url = $track['external_urls']['spotify'];
@@ -109,6 +123,7 @@ class MusicController extends Controller
                 $album_image_url = $album_image['url'];
                 $album_image_urls[$height] = $album_image_url;
             }
+            $image_url = $album_image_urls[64];
 
             $request = compact(
                 'spotify_track_id',
@@ -119,6 +134,7 @@ class MusicController extends Controller
                 'spotify_artist_id',
                 'artist_name',
                 'artist_url',
+                'image_url',
             );
 
             // バリデーション
@@ -131,6 +147,7 @@ class MusicController extends Controller
                 'spotify_artist_id' => 'required | max:191',
                 'artist_name' => 'required | max:191',
                 'artist_url' => 'required',
+                'image_url' => 'required',
             ]);
             // バリデーション:エラー
             if ($validator->fails()) {

@@ -8,6 +8,7 @@ use App\Models\Schedule;
 use App\Models\Music;
 use Validator;
 use Auth;
+use Carbon\Carbon;
 
 class ActionController extends Controller
 {
@@ -42,11 +43,18 @@ class ActionController extends Controller
      */
     public function store(Request $request)
     {
+        $start = Carbon::createFromTimeString($request->start, 'Asia/Tokyo');
+        $finish = Carbon::now('Asia/Tokyo');
+        // create()は最初から用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        // 🔽 編集 フォームから送信されてきたデータとユーザID, 終了時刻をマージし，DBにinsertする
+        $data = $request->merge(['user_id' => Auth::user()->id, 'start' => $start, 'finish' => $finish])->all();
+
         // バリデーション
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($data, [
             'schedule_id' => 'required | exists:schedules,id',
             'start' => 'required',
-            'finish' => 'required',
+            'finish' => 'required | after:start',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {
@@ -55,10 +63,7 @@ class ActionController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        // create()は最初から用意されている関数
-        // 戻り値は挿入されたレコードの情報
-        // 🔽 編集 フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
-        $data = $request->merge(['user_id' => Auth::user()->id, 'schedule_id' => $request->schedule_id])->all();
+
         $result = Action::create($data);
         
         // ルーティング「action.index」にリクエスト送信（一覧ページに移動）
@@ -113,23 +118,11 @@ class ActionController extends Controller
         //
     }
 
-    public function act(Request $request)
+    public function act($id)
     {
-        // バリデーション
-        $validator = Validator::make($request->all(), [
-            'schedule_id' => 'required',
-            'start' => 'required',
-        ]);
-        // バリデーション:エラー
-        if ($validator->fails()) {
-            return redirect()
-            ->route('schedule.index')
-            ->withInput()
-            ->withErrors($validator);
-        }
-
-        $schedule = Schedule::find($request->id);
+        $start = Carbon::now('Asia/Tokyo');
+        $schedule = Schedule::find($id);
         $musics = Music::getLimitedOrderByUpdated_at();
-        return view('action.act', compact('request', 'schedule', 'musics'));
+        return view('action.act', compact('start', 'schedule', 'musics'));
     }
 }
