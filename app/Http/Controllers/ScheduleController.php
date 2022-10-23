@@ -43,6 +43,7 @@ class ScheduleController extends Controller
     {
         // バリデーション
         $validator = Validator::make($request->all(), [
+            'category_id' => 'required',
             'schedule_title' => 'required | max:191',
             'start' => 'required',
             'finish'=>'required | after:start'
