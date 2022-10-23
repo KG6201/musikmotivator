@@ -40,7 +40,7 @@ class CategoryController extends Controller
     {
         // バリデーション
         $validator = Validator::make($request->all(), [
-            'category_name' => 'required | max:255',
+            'category_name' => 'required | max:255 | unique:categories,category_name',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {
